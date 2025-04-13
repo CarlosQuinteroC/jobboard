@@ -1,4 +1,8 @@
-<x-layout>
+@extends('components.layout')
+
+@section('title', 'Job')
+
+@section('content')
     <x-slot:heading>
         Edit Job: {{ $job->title }}
     </x-slot:heading>
@@ -32,22 +36,22 @@
                     </div>
 
                     <div class="sm:col-span-4">
-                        <label for="salary" class="block text-sm font-medium leading-6 text-gray-900">Salary</label>
+                        <label for="salary" class="block text-sm font-medium leading-6 text-gray-900">Body</label>
                         <div class="mt-2">
                             <div
                                 class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
                             >
                                 <input
                                     type="text"
-                                    name="salary"
-                                    id="salary"
+                                    name="body"
+                                    id="body"
                                     class="block flex-1 border-0 bg-transparent py-1.5 px-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                    placeholder="$50,000 Per Year"
-                                    value="{{ $job->salary }}"
+                                    placeholder="Include the job description"
+                                    value="{{ $job->body }}"
                                     required>
                             </div>
 
-                            @error('salary')
+                            @error('body')
                             <p class="text-xs text-red-500 font-semibold mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -74,8 +78,10 @@
         </div>
     </form>
 
-    <form method="POST" action="/jobs/{{ $job->id }}" id="delete-form" class="hidden">
+    <form method="POST" action="{{ route('jobs.destroy', $job) }}" id="delete-form" class="hidden">
         @csrf
         @method('DELETE')
     </form>
-</x-layout>
+
+
+@endsection

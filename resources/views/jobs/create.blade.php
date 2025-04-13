@@ -1,9 +1,13 @@
-<x-layout>
+@extends('components.layout')
+
+@section('title', 'Create')
+
+@section('content')
     <x-slot:heading>
         Create Job
     </x-slot:heading>
 
-    <form method="POST" action="/jobs">
+    <form method="POST" action="{{ route('jobs.store') }}" >
         @csrf
 
         <div class="space-y-12">
@@ -21,11 +25,11 @@
                         </div>
                     </x-form-field>
                     <x-form-field class="sm:col-span-4">
-                        <x-form-label for="salary">Salary</x-form-label>
+                        <x-form-label for="body">Description</x-form-label>
                         <div class="mt-2">
-                            <x-form-input name="salary" id="salary" placeholder="100,000 USD" required />
+                            <x-form-input name="body" id="body" placeholder="100,000 USD" required />
 
-                            <x-form-error name="salary" />
+                            <x-form-error name="body" />
                         </div>
                     </x-form-field>
 
@@ -38,4 +42,4 @@
             <x-form-button>Save</x-form-button>
         </div>
     </form>
-</x-layout>
+@endsection

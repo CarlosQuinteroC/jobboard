@@ -39,6 +39,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Job::class, 'interests')->withTimestamps();
     }
+
+    // A user (poster) can have many created jobs.
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
     /**
      * Get the attributes that should be cast.
      *
