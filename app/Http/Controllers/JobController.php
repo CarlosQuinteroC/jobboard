@@ -25,21 +25,20 @@ class JobController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        // Validate input. Add more validation as needed.
+        // Validate input.
         $request->validate([
             'title' => 'required|string|max:255',
             'body'  => 'required|string',
         ]);
 
         // Only allow posters to create jobs.
-        // You might also implement this check via middleware.
         if (Auth::user()->role !== 'poster') {
             abort(403, 'Unauthorized');
         }
 
         // Create the job and assign it to the current user.
         $job = Auth::user()->jobs()->create($request->only('title', 'body'));
-        return redirect()->route('jobs.show', $job)->with('success', 'Job created!');
+        return redirect()->route('jobs.index', $job)->with('success', 'Job created!');
     }
 
     // Display a specific job posting.

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InterestController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Displaying a single job should be defined after the static routes.
     Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+
+    // Route for toggling interest on a job
+    Route::post('/jobs/{job}/interest', [InterestController::class, 'toggle'])->name('jobs.interest.toggle');
 });
 
 // Authentication Routes
