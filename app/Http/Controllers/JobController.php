@@ -11,7 +11,7 @@ class JobController extends Controller
     // List all active jobs for the landing page.
     public function index()
     {
-        $jobs = Job::active()->latest()->paginate(3);
+        $jobs = Job::active()->latest()->paginate(6);
         return view('jobs.index', compact('jobs'));
     }
 
