@@ -16,12 +16,10 @@
             <div class="flex h-16 items-center justify-between">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <img class="h-8 w-8" src="{{ asset('images/icon.svg') }}" alt="Job-Board-Icon">
-                    </div>
-                    <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-4">
-                            <x-nav-link href="/" :active="request()->is('/')">Jobs board</x-nav-link>
-                        </div>
+                        <a href="/">
+                            <img class="h-8 w-8" src="{{ asset('images/icon.svg') }}" alt="Job-Board-Icon">
+                        </a>
+
                     </div>
                 </div>
                 <div class="hidden md:block">
