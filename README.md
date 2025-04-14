@@ -1,6 +1,14 @@
 # Job Board Platform
 
 This is a simple job booking platform built with **Laravel 12**, **Blade**, and **Tailwind CSS** (via Herd). The project demonstrates full-stack development using Laravel's ORM, basic authentication.
+### Improve Opportunities
+- Components reusability: There is room for converting some elements in blade components to reduce repeated code.
+- For testing purpose would be helpful create the factories and seed of database.
+- Modify the layout to replace the current log in and log out buttons for a dropdown with the user name.
+- Modify the show view for fixed height if less than 6 jobs in the view.
+- Add filters to the jobs view.
+- Modify forms for a centered container.
+- API documentation, consider [Scramble](https://laravel-news.com/scramble-laravel-api-docs)
 
 ## Features
 
@@ -27,6 +35,26 @@ This is a simple job booking platform built with **Laravel 12**, **Blade**, and 
 - **Database:** MySQL
 - **Version Control:** Git (commits pushed to [GitHub](https://github.com/CarlosQuinteroC/jobboard.git))
 - **Environment:** Laravel Herd
+## Routes
+## Route Summary
+
+| Method | URI                          | Name                        | Action                                        | Middleware              |
+| ------ | ---------------------------- | --------------------------- | --------------------------------------------- | ----------------------- |
+| GET    | `/`                          | `jobs.index`                | `JobController@index`                         | —                       |
+| GET    | `/register`                  | `register`                  | `RegisterController@create`                   | —                       |
+| POST   | `/register`                  | —                           | `RegisterController@store`                    | —                       |
+| GET    | `/login`                     | `login`                     | `SessionController@create`                    | —                       |
+| POST   | `/login`                     | —                           | `SessionController@store`                     | —                       |
+| POST   | `/logout`                    | —                           | `SessionController@destroy`                   | —                       |
+| **Authenticated** |                    |                             |                                               | `auth`                  |
+|   GET  | `/jobs/{job}`                | `jobs.show`                 | `JobController@show`                          | `auth`                  |
+|   POST | `/jobs/{job}/interest`       | `jobs.interest.toggle`      | `InterestController@toggle`                   | `auth`                  |
+| **Posters Only**  |                    |                             |                                               | `auth, role:poster`     |
+|   GET  | `/jobs/create`               | `jobs.create`               | `JobController@create`                        | `auth, role:poster`     |
+|   POST | `/jobs`                      | `jobs.store`                | `JobController@store`                         | `auth, role:poster`     |
+|   GET  | `/jobs/{job}/edit`           | `jobs.edit`                 | `JobController@edit`                          | `auth, role:poster`     |
+|   PATCH| `/jobs/{job}`                | `jobs.update`               | `JobController@update`                        | `auth, role:poster`     |
+|   DELETE| `/jobs/{job}`               | `jobs.destroy`              | `JobController@destroy`                       | `auth, role:poster`     |
 
 ## Installation
 
